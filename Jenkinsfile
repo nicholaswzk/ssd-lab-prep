@@ -27,22 +27,22 @@ pipeline {
 		// TAKE NOTE:
 		// RUN THIS ONLY IN THE EVENT OF DOCKER SERVICE RESTART AS GOOGLE CHROME IS IN THE CONTAINER ALREADY. JUST NEED TO RUN ONCE!
 
-         stage('Setup Chrome') {
-             steps {
-                 echo '-------- Performing Chrome Setup Stage --------'
-                 sh 'apt update'
-                 sh 'apt --fix-broken -y install'
-                 sh 'apt install wget'
-                 sh 'apt install -fy gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils'
-                sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
-                 sh 'dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install'
-            }
-        }
+//         stage('Setup Chrome') {
+//             steps {
+//                 echo '-------- Performing Chrome Setup Stage --------'
+//                 sh 'apt update'
+//                 sh 'apt --fix-broken -y install'
+//                 sh 'apt install wget'
+//                 sh 'apt install -fy gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils'
+//                sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
+//                 sh 'dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install'
+//            }
+//        }
         stage('Unit Test') {
             steps {
                 script {
                     echo '-------- Performing Automated Unit Test Stage --------'
-                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
+                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls'
                     echo "Automated Unit Testing has no errors! Proceeding on!"
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
                         sh "./headless.sh"
                 }
                 echo '-------- Performing Headless Browser Test Stage --------'
-                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
+                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login'
                 echo "Headless Browser Testing has no errors! Proceeding on!"
             }
         }
