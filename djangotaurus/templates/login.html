@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diamond Hands</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/style/style.css' %}">
+    </head>
+
+    <body>
+        <div id="login" class="columns">
+            <div class="column login">
+                <object class="logo is-hidden-desktop is-hidden-tablet" data="{% static '/svg/Logo.svg' %}" type="image/svg+xml">
+                    <img src="{% static '/svg/Logo.svg' %}" />
+                  </object>
+                <h1 class="login-header is-size-1 has-text-centered">Login</h1>
+                <form id="login-form" class="login-form" action="" method="post">
+                    <div class="field login-form">
+                        <div class="control">
+                            <input id="em" class="input" type="email" placeholder="Email Address" maxlength="100"
+                                onkeyup="doValidate(this)" required>
+                        </div>
+                    </div>
+                    <div class="field login-form">
+                        <div class="control has-icons-right">
+                            <input id="pw" class="input" type="password" name="password" placeholder="Password"
+                                    minlength="10" maxlength="45" onkeyup="doValidate(this)" required>
+                                <span id="pwEye" class="icon is-action is-large is-right" onmousedown="toggleEye(this);"
+                                    onmouseup="toggleEye(this);">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div>
+                        <span id="error_text" class="help has-text-danger is-hidden">Custom error message</span>
+                    </div>
+                    <p class="has-text-centered">Need an account?<a href="{% url 'register' %}" > Sign up</a></p>
+                    <div class="login-btn-box">
+                        <input id="btnLogin" class="button is-medium" type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
+            <div class="column illus is-hidden-mobile is-three-fifths">
+                <object class="illus-size" data="{% static '/svg/Illus.svg' %}" type="image/svg+xml">
+                    <img src="{% static '/svg/Illus.svg' %}" />
+                  </object>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script defer type="text/javascript" src="{% static '/scripts/login.js' %}"></script>
+    </body>
+
+</html>
