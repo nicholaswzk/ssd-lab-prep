@@ -12,9 +12,9 @@ pipeline {
 				script {
 					echo '-------- Performing Build Stage --------'
 					try {
-					    	sh 'apk add python'
-						sh 'python -m pipenv install Pipfile'
-						sh 'python -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
+					    	sh 'apk add python3'
+						sh 'python3 -m pipenv install Pipfile'
+						sh 'python3 -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
                         echo "Build has no errors! Proceeding on!"
                     } catch (Exception e) {
                         echo "Build has errors! Please check and verify!"
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     echo '-------- Performing Automated Unit Test Stage --------'
-                    sh 'python -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
+                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
                     echo "Automated Unit Testing has no errors! Proceeding on!"
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
                         sh "./headless.sh"
                 }
                 echo '-------- Performing Headless Browser Test Stage --------'
-                sh 'python -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
+                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
                 echo "Headless Browser Testing has no errors! Proceeding on!"
             }
         }
