@@ -13,6 +13,7 @@ pipeline {
 					echo '-------- Performing Build Stage --------'
 					try {
 					    	sh 'apk add python3'
+					    	sh 'apk add py3-pip'
 					    	sh 'python3 -m pip pipenv'
 						sh 'python3 -m pipenv install Pipfile'
 						sh 'python3 -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
