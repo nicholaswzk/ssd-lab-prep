@@ -51,11 +51,6 @@ pipeline {
             steps {
                 // Switch from production keys to test keys
                 // Activation of Headless Script to allow captcha to run test keys
-                echo '-------- Changing from production ReCAPTCHA keys to test ones  --------'
-                dir("/home") {
-                        sh "chmod +x headless.sh"
-                        sh "./headless.sh"
-                }
                 echo '-------- Performing Headless Browser Test Stage --------'
                 sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login'
                 echo "Headless Browser Testing has no errors! Proceeding on!"
