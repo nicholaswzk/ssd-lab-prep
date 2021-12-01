@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     echo '-------- Performing Automated Unit Test Stage --------'
-                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
+                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls'
                     echo "Automated Unit Testing has no errors! Proceeding on!"
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
                         sh "./headless.sh"
                 }
                 echo '-------- Performing Headless Browser Test Stage --------'
-                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
+                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login'
                 echo "Headless Browser Testing has no errors! Proceeding on!"
             }
         }
