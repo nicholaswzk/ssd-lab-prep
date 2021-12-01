@@ -43,7 +43,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         super().tearDown()
 
     def test_connection(self):
-        hello = self.browser.find_element(By.ID, 'hello')
+        hello = self.browser.find_element(By.ID, 'hello').text
         assert 'Hello World!' in hello
 
     # def test_login_form_invalid_email(self):
