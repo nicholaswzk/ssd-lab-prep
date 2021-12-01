@@ -12,9 +12,9 @@ pipeline {
 				script {
 					echo '-------- Performing Build Stage --------'
 					try {
-					    sh
-						sh 'python3 -m pipenv install Pipfile'
-						sh 'python3 -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
+					    	sh 'apk add python'
+						sh 'python -m pipenv install Pipfile'
+						sh 'python -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
                         echo "Build has no errors! Proceeding on!"
                     } catch (Exception e) {
                         echo "Build has errors! Please check and verify!"
@@ -28,10 +28,10 @@ pipeline {
          stage('Setup Chrome') {
              steps {
                  echo '-------- Performing Chrome Setup Stage --------'
-                 sh 'apt update'
-                 sh 'apt --fix-broken -y install'
-                 sh 'apt install wget'
-                 sh 'apt-get install -fy gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils'
+                 sh 'apk update'
+                 sh 'apt fix'
+                 sh 'apt add wget'
+                 sh 'apt add -fy gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils'
                 sh 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
                  sh 'dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install'
             }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     echo '-------- Performing Automated Unit Test Stage --------'
-                    sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
+                    sh 'python -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_urls --keepdb'
                     echo "Automated Unit Testing has no errors! Proceeding on!"
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
                         sh "./headless.sh"
                 }
                 echo '-------- Performing Headless Browser Test Stage --------'
-                sh 'python3 -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
+                sh 'python -m pipenv run python3 djangotaurus/manage.py test djangotaurus.tests.test_login --keepdb'
                 echo "Headless Browser Testing has no errors! Proceeding on!"
             }
         }
