@@ -12,9 +12,9 @@ pipeline {
 				script {
 					echo '-------- Performing Build Stage --------'
 					try {
-					    	sh 'apk add python3'
-					    	sh 'apk add py3-pip'
-					    	sh 'python3 -m pip pipenv'
+					    	sh 'apt-get install python3'
+					    	sh 'apt install python3-pip'
+					    	sh 'python3 -m pip install pipenv'
 						sh 'python3 -m pipenv install Pipfile'
 						sh 'python3 -m pipenv run python3 djangotaurus/manage.py collectstatic --noinput'
                         echo "Build has no errors! Proceeding on!"
@@ -30,7 +30,7 @@ pipeline {
          stage('Setup Chrome') {
              steps {
                  echo '-------- Performing Chrome Setup Stage --------'
-                 sh 'apk update'
+                 sh 'apt update'
                  sh 'apt fix'
                  sh 'apt add wget'
                  sh 'apt add -fy gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils'
