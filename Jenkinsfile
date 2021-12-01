@@ -14,18 +14,18 @@ pipeline {
                 	}
            	}
 	}
-//         stage('SonarQube Analysis') {
-//             steps {
-//                 script {
-//                     echo '-------- Performing SonarQube Scan --------'
-//                     def scannerHome = tool 'ict3x03_Taurus_SonarQube_Scanner';
-//                     withSonarQubeEnv('SonarQube') {
-//                         sh "${scannerHome}/bin/sonar-scanner"
-//                     }
-//                        echo "SonarQube Analysis has no errors! Proceeding on!"
-//                 }
-//              }
-// 	 }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    echo '-------- Performing SonarQube Scan --------'
+                    def scannerHome = tool 'ict3x03_SonarQube_Scanner';
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                       echo "SonarQube Analysis has no errors! Proceeding on!"
+                }
+             }
+	 }
         stage('OWASP Dependency Check') {
 			steps {
 			    echo '-------- Performing OWASP Dependency Check --------'
