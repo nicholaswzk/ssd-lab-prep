@@ -34,8 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangotaurus.apps.TaurusConfig',
-    "pwa"
 ]
 
 MIDDLEWARE = [
