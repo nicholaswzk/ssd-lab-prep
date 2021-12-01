@@ -26,7 +26,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         options.add_argument('--no-sandbox')
         options.add_argument('--window-size=1920,1080')
         self.chrome = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-        self.url = f"{self.live_server_url}"
+        self.url = f"{self.live_server_url}/"
         self.browser = self.chrome
         self.browser.implicitly_wait(10)
         self.browser.get(self.url)
@@ -43,7 +43,8 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         super().tearDown()
 
     def test_connection(self):
-        assert 'Home' in self.browser.title
+        hello = self.browser.find_element(By.ID, 'hello')
+        assert 'Hello World!' in hello
 
     # def test_login_form_invalid_email(self):
     #     """
