@@ -51,7 +51,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         search = self.browser.find_element(By.ID, 'search')
         self.search.send_keys('abc')
         button = self.browser.find_element(By.ID, 'submit')
-        button.()
+        button.click()
         wait = self.browser.implicitly_wait(10)
         wait.until(EC.title_is('Diamond Hands'))
         title = self.browser.find_element(By.tag_name, 'title').text
@@ -61,7 +61,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         search = self.browser.find_element(By.ID, 'search')
         self.search.send_keys('<script>')
         button = self.browser.find_element(By.ID, 'submit')
-        button.()
+        button.click()
         alert = self.switch_to.alert
         assert "Attacked by Prans" in alert.text
         alert.accept()
