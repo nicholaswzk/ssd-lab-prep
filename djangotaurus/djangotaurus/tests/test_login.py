@@ -63,7 +63,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         button.click()
         #driver = webdriver.Chrome()
         #wait = WebDriverWait(driver, 10)
-        #wait.until(EC.alert_is_present())
+        # wait.until(EC.alert_is_present())
         #alert = driver.switch_to.alert
         #assert "Attacked by Prans" in alert.text
         assert '' in search.get_attribute('value') 
