@@ -49,7 +49,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
 
     def test_pass(self):
         search = self.browser.find_element(By.ID, 'search')
-        self.search.send_keys('abc')
+        search.send_keys('abc')
         button = self.browser.find_element(By.ID, 'submit')
         button.click()
         wait = self.browser.implicitly_wait(10)
@@ -59,7 +59,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
 
     def test_xss(self):
         search = self.browser.find_element(By.ID, 'search')
-        self.search.send_keys('<script>')
+        search.send_keys('<script>')
         button = self.browser.find_element(By.ID, 'submit')
         button.click()
         alert = self.switch_to.alert
