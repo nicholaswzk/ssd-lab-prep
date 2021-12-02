@@ -45,16 +45,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
     def test_connection(self):
         hello = self.browser.find_element(By.ID, 'hello').text
 	assert 'Hello World!' in hello
-
-    def test_xss(self):
-	search = self.browser.find_element(By.ID,'search')
-	self.search.send_keys('<script>')
-	button = self.browser.find_element(By.ID,'submit')
-	button.()
-	alert =  self.switch_to.alert
-	assert "Attacked by Prans" in alert.text
-	alert.accept()
-
+	
     def test_pass(self):
 	search = self.browser.find_element(By.ID,'search')
 	self.search.send_keys('abc')
@@ -64,6 +55,15 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
 	wait.until(EC.title_is('Diamond Hands'))
 	title = self.browser.find_element(By.tag_name,'title').text
 	assert "Diamond Hands" in title 
+
+    def test_xss(self):
+	search = self.browser.find_element(By.ID,'search')
+	self.search.send_keys('<script>')
+	button = self.browser.find_element(By.ID,'submit')
+	button.()
+	alert =  self.switch_to.alert
+	assert "Attacked by Prans" in alert.text
+	alert.accept()
 
     # def test_login_form_invalid_email(self):
     #     """
