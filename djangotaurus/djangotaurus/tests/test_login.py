@@ -53,7 +53,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         button = self.browser.find_element(By.ID, 'submit')
         button.click()
 	self.browser.implicitly_wait(10)
-        title = self.browser.find_element(By.tag_name, 'title').text
+        title = self.browser.find_element(By.TAG_NAME, 'title').text
         assert "Diamond Hands" in title
 
     def test_xss(self):
@@ -66,7 +66,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         #wait.until(EC.alert_is_present())
         #alert = driver.switch_to.alert
         #assert "Attacked by Prans" in alert.text
-        assert '' in search.value 
+        assert '' in search.get_attribute('value') 
 
     # def test_login_form_invalid_email(self):
     #     """
