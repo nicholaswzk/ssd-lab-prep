@@ -25,7 +25,8 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         options.headless = True
         options.add_argument('--no-sandbox')
         options.add_argument('--window-size=1920,1080')
-        self.chrome = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        self.chrome = webdriver.Chrome(
+            ChromeDriverManager().install(), options=options)
         self.url = f"{self.live_server_url}/"
         self.browser = self.chrome
         self.browser.implicitly_wait(10)
@@ -43,27 +44,27 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         super().tearDown()
 
     def test_connection(self):
-	hello = self.browser.find_element(By.ID, 'hello').text
-	assert 'Hello World!' in hello
-	
+        hello = self.browser.find_element(By.ID, 'hello').text
+        assert 'Hello World!' in hello
+
     def test_pass(self):
-	search = self.browser.find_element(By.ID,'search')
-	self.search.send_keys('abc')
-	button = self.browser.find_element(By.ID,'submit')
-	button.()
-	wait = self.browser.implicitly_wait(10)
-	wait.until(EC.title_is('Diamond Hands'))
-	title = self.browser.find_element(By.tag_name,'title').text
-	assert "Diamond Hands" in title 
+        search = self.browser.find_element(By.ID, 'search')
+        self.search.send_keys('abc')
+        button = self.browser.find_element(By.ID, 'submit')
+        button.()
+        wait = self.browser.implicitly_wait(10)
+        wait.until(EC.title_is('Diamond Hands'))
+        title = self.browser.find_element(By.tag_name, 'title').text
+        assert "Diamond Hands" in title
 
     def test_xss(self):
-	search = self.browser.find_element(By.ID,'search')
-	self.search.send_keys('<script>')
-	button = self.browser.find_element(By.ID,'submit')
-	button.()
-	alert =  self.switch_to.alert
-	assert "Attacked by Prans" in alert.text
-	alert.accept()
+        search = self.browser.find_element(By.ID, 'search')
+        self.search.send_keys('<script>')
+        button = self.browser.find_element(By.ID, 'submit')
+        button.()
+        alert = self.switch_to.alert
+        assert "Attacked by Prans" in alert.text
+        alert.accept()
 
     # def test_login_form_invalid_email(self):
     #     """
