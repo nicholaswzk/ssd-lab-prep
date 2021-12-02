@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    if request.method = "POST":
+    if request.method == "POST":
 	user_input = str(request.POST['search'])
 	return render(request,'login.html',{'user_input':user_input});
     return render(request, 'index.html')
