@@ -52,7 +52,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         search.send_keys('abc')
         button = self.browser.find_element(By.ID, 'submit')
         button.click()
-	self.browser.implicitly_wait(10)
+        self.browser.implicitly_wait(10)
         title = self.browser.find_element(By.TAG_NAME, 'title').text
         assert "Diamond Hands" in title
 
@@ -66,7 +66,7 @@ class Test_Login_User_Interface(StaticLiveServerTestCase):
         # wait.until(EC.alert_is_present())
         #alert = driver.switch_to.alert
         #assert "Attacked by Prans" in alert.text
-        assert '' in search.get_attribute('value') 
+        assert '' in search.get_attribute('value')
 
     # def test_login_form_invalid_email(self):
     #     """
